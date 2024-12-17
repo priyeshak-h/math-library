@@ -28,8 +28,8 @@ jobs:
       with:
         context: .
         push: true
-        tags: ${{ secrets.DOCKER_USERNAME }}/math-lib:latest
+        tags: ${{ secrets.DOCKER_USERNAME }}/math-library:latest
 
     - name: Run tests
       run: |
-        docker run ${{ secrets.DOCKER_USERNAME }}/math-lib:latest python -m unittest discover -s tests
+        docker run ${{ secrets.DOCKER_USERNAME }}/math-library:latest python -m unittest discover -s tests
