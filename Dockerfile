@@ -1,13 +1,21 @@
-FROM python:3.12-slim-bullseye
 
-RUN sudo apt-get update
-RUN sudo apt-get install build-essential libssl-dev libffi-dev python3-dev
+# Use an official Python runtime as a parent image
+FROM python:3.8-slim
 
+# Set the working directory in the container
 WORKDIR /app
 
-COPY requirements.txt requirements.txt
+# Copy the current directory contents into the container at /app
+COPY . /app
+
+# Install any needed packages specified in requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
 
-COPY . .
+# Make port 80 available to the world outside this container
+EXPOSE 80
 
-CMD ["python", "main.py"]
+# Define environment variable
+ENV NAME World
+
+# Run app.py when the container launches
+CMD ["python", "app.py"]
