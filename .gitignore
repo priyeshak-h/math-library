@@ -1,0 +1,24 @@
+# Ignore compiled files
+*.class
+*.pyc
+*.exe
+
+# Ignore build directories
+/build/
+/dist/
+
+# Ignore dependency folders
+node_modules/
+venv/
+auto_dep_env/
+
+# Ignore log files
+*.log
+
+# Ignore local configuration
+.env
+config.local
+
+# Operating system files
+.DS_Store
+Thumbs.db
