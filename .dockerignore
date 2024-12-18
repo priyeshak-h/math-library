@@ -1,43 +1,43 @@
 ```
-# Version control directories and files
+# Version control
 .git
 .hg
 .svn
-.CVS
+.bzr
 
-# Python-specific cache and compiled files
-__pycache__/
+# Python cache and compiled files
+__pycache__
 *.py[cod]
 *$py.class
 
 # Virtual environments
-venv/
 env/
+venv/
 ENV/
-.venv/
-.virtualenv/
+VENV/
+*.env
+*.venv
 
 # Development and local configuration files
-*.env
 *.local
-*.settings
-*.config
-*.cfg
-*.ini
 *.log
-*.bak
+*.idea/
+*.vscode/
+*.vs/
+*.pyo
+*.pyd
 
 # Build and distribution artifacts
-build/
-dist/
 *.egg-info/
-.eggs/
+*.egg
+*.wheel
+dist/
+build/
 *.manifest
 *.spec
 
 # Project-specific files
-.DS_Store
-Thumbs.db
-.idea/
-.vscode/
+Dockerfile
+README.md
+requirements.txt
 ```
