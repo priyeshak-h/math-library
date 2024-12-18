@@ -1,42 +1,36 @@
 ```
-# Version control
+# Version control directories and files
 .git
-.hg
-.svn
-.bzr
+.gitignore
 
-# Python cache and compiled files
-__pycache__
-*.py[cod]
-*$py.class
+# Python-specific cache and compiled files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
 
 # Virtual environments
-env/
 venv/
 ENV/
-VENV/
+env/
 *.env
-*.venv
 
 # Development and local configuration files
 *.local
 *.log
-*.idea/
-*.vscode/
-*.vs/
-*.pyo
-*.pyd
+*.env
+*.ini
+*.cfg
 
 # Build and distribution artifacts
-*.egg-info/
-*.egg
-*.wheel
-dist/
 build/
-*.manifest
-*.spec
+dist/
+*.egg-info/
+.eggs/
+*.egg
+*.whl
 
-# Project-specific files
+# Project-specific files that should not be in the Docker context
 Dockerfile
 README.md
 requirements.txt
