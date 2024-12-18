@@ -1,34 +1,33 @@
 ```
-# Version control directories and files
+# Version control
 .git
 .gitignore
 
 # Python cache and compiled files
-__pycache__
+__pycache__/
 *.py[cod]
 *$py.class
 
 # Virtual environments
 venv/
-ENV/
-env/
-*.env
-*.venv
+.env/
+.venv/
 
 # Development and local configuration files
+*.env
 *.local
 *.log
-*.envrc
-*.sh
 
 # Build and distribution artifacts
-build/
+*.egg-info/
 dist/
-*.egg-info
+build/
 .eggs/
-*.manifest
-*.spec
-*.bak
+*.egg
+
+# Bytecode and debugging artifacts
+*.pyo
+*.pyd
 
 # Project-specific files
 Dockerfile
