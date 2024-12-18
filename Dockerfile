@@ -1,12 +1,10 @@
-FROM python:3.12
+FROM python:3.12-slim
 
 WORKDIR /app
 
-COPY requirements.txt requirements.txt
-COPY math_library/ math_library/
-COPY main.py main.py
-COPY README.md README.md
-
+COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
+
+COPY . .
 
 CMD ["python", "main.py"]
