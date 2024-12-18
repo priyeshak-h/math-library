@@ -1,1 +1,12 @@
-"FROM python:3.12-slim\n\n# Set the working directory\nWORKDIR /app\n\n# Copy the requirements file\nCOPY requirements.txt .\n\n# Install dependencies\nRUN pip install --no-cache-dir -r requirements.txt\n\n# Copy the application files\nCOPY . .\n\n# Define the startup command\nCMD [\"python\", \"main.py\"]" 
+```Dockerfile
+FROM python:3.12-slim
+
+WORKDIR /app
+
+COPY requirements.txt requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
+
+COPY . .
+
+CMD ["python", "main.py"]
+```

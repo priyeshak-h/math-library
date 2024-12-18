@@ -1,1 +1,37 @@
--e '.git\n.gitignore\n__pycache__\n*.pyc\n*.pyo\nvenv/\n.venv/\nenv/\n.env/\n*.env\n*.local\n*.log\nbuild/\ndist/\n*.egg-info\n*.egg\n*.whl\n*.manifest\nDockerfile\nREADME.md\nrequirements.txt' 
+```
+# Version control directories and files
+.git
+.gitignore
+
+# Python cache and compiled files
+__pycache__
+*.py[cod]
+*$py.class
+
+# Virtual environments
+venv/
+ENV/
+env/
+*.env
+*.venv
+
+# Development and local configuration files
+*.local
+*.log
+*.envrc
+*.sh
+
+# Build and distribution artifacts
+build/
+dist/
+*.egg-info
+.eggs/
+*.manifest
+*.spec
+*.bak
+
+# Project-specific files
+Dockerfile
+README.md
+requirements.txt
+```
