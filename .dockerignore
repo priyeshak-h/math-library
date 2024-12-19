@@ -3,34 +3,31 @@
 .git
 .gitignore
 
-# Python-specific cache and compiled files
+# Python cache and compiled files
 __pycache__/
 *.py[cod]
 *$py.class
 
 # Virtual environments
-env/
 venv/
-ENV/
-.venv/
-*.venv
+env/
+*.egg-info
+.eggs
 
 # Development and local configuration files
 *.env
 *.local
+*.config
 *.development
-*.test
-*.log
 
 # Build and distribution artifacts
-*.egg
-*.egg-info/
-dist/
 build/
-*.egg-info
+dist/
+*.egg
+*.whl
 
-# Project-specific files that should not be in the Docker context
-Dockerfile
-README.md
-requirements.txt
+# Project-specific files
+.DS_Store
+*.log
+*.bak
 ```
