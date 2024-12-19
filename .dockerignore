@@ -4,35 +4,33 @@
 .gitignore
 
 # Python-specific cache and compiled files
-__pycache__
+__pycache__/
 *.pyc
 *.pyo
 *.pyd
 
 # Virtual environments
 venv/
-env/
 ENV/
+env/
 .venv/
-.ENV/
+.virtualenv/
 
 # Development and local configuration files
 *.env
 *.local
-*.dev
-*.test
-*.log
 
 # Build and distribution artifacts
+*.egg-info/
+*.egg
 build/
 dist/
-*.egg-info
-*.egg
-*.wheel
+*.tar.gz
+*.zip
+*.whl
 
-# Project-specific files to exclude
+# Project-specific files
 Dockerfile
 README.md
-main.py
 requirements.txt
 ```
