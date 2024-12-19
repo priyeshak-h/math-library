@@ -4,32 +4,37 @@
 .gitignore
 
 # Python-specific cache and compiled files
-__pycache__
-*.pyc
+__pycache__/
+*.py[cod]
 *.pyo
-*.pyd
+*$py.class
 
 # Virtual environments
-env/
 venv/
 ENV/
-VENV/
+env/
+.venv/
+bin/
+obj/
 
 # Development and local configuration files
 *.env
 *.local
-*.settings
 *.log
+*.test
+*.config
+*.bak
 
 # Build and distribution artifacts
-build/
+*.egg
+*.egg-info
 dist/
-*.egg-info/
+build/
 .eggs/
+*.whl
 
 # Project-specific files
-.DS_Store
-*.bak
-*.swp
-*.tmp
+Dockerfile
+README.md
+requirements.txt
 ```
