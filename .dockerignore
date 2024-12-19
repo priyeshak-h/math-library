@@ -5,31 +5,31 @@
 
 # Python-specific cache and compiled files
 __pycache__/
-*.pyc
-*.pyo
-*.pyd
+*.py[cod]
+*$py.class
 
 # Virtual environments
+env/
 venv/
 ENV/
-env/
 .venv/
-.virtualenv/
+*.venv
 
 # Development and local configuration files
 *.env
 *.local
+*.development
+*.test
+*.log
 
 # Build and distribution artifacts
-*.egg-info/
 *.egg
-build/
+*.egg-info/
 dist/
-*.tar.gz
-*.zip
-*.whl
+build/
+*.egg-info
 
-# Project-specific files
+# Project-specific files that should not be in the Docker context
 Dockerfile
 README.md
 requirements.txt
