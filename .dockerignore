@@ -3,31 +3,34 @@
 .git
 .gitignore
 
-# Python cache and compiled files
-__pycache__/
+# Python-specific cache and compiled files
+__pycache__
 *.py[cod]
 *$py.class
 
 # Virtual environments
 venv/
+ENV/
 env/
-*.egg-info
-.eggs
+*.env
+*.venv
 
 # Development and local configuration files
-*.env
-*.local
-*.config
-*.development
+*.log
+*.ini
+*.sh
+*.bat
+*.swp
+*.swo
 
 # Build and distribution artifacts
 build/
 dist/
-*.egg
-*.whl
+*.egg-info/
+*.wheel
 
 # Project-specific files
 .DS_Store
-*.log
 *.bak
+*.tmp
 ```
