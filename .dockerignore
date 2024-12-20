@@ -9,23 +9,24 @@ __pycache__/
 *$py.class
 
 # Virtual environments
+env/
 venv/
 ENV/
-env/
-.venv/
-.pipenv/
+*.env
 
 # Development and local configuration files
-*.env
 *.local
-*.development
+*.log
+*.pid
+*.lock
 
 # Build and distribution artifacts
-*.egg
-*.egg-info/
-dist/
 build/
-*.egg-info
+dist/
+*.egg-info/
+.eggs/
+*.manifest
+*.spec
 
 # Project-specific files
 Dockerfile
