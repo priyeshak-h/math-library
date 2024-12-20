@@ -1,11 +1,11 @@
 ```
-# Version control
+# Version control directories and files
 .git
 .hg
 .svn
-.CVS
+*.swp
 
-# Python cache and compiled files
+# Python-specific cache and compiled files
 __pycache__/
 *.py[cod]
 *$py.class
@@ -13,34 +13,24 @@ __pycache__/
 # Virtual environments
 venv/
 env/
-ENV/
 .venv/
 .env/
 
 # Development and local configuration files
-*.env
-*.local
 *.log
-*.test
 *.ini
 *.cfg
-*.yaml
-*.yml
-*.toml
+*.env
 
 # Build and distribution artifacts
-build/
-dist/
+*.egg
 *.egg-info/
-.eggs/
-
-# Byte-compiled / optimized / DLL files
-*.pyd
-*.pyo
+dist/
+build/
+*.o
 *.so
-*.dll
 
 # Project-specific files
 .DS_Store
-Thumbs.db
+*.bak
 ```
