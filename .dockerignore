@@ -1,35 +1,33 @@
-```
 # Version control directories and files
 .git
 .gitignore
 
-# Python-specific cache and compiled files
+# Python cache and compiled files
 __pycache__/
 *.py[cod]
 *$py.class
 
 # Virtual environments
-env/
 venv/
-ENV/
-*.env
+env/
+.venv/
+.env/
 
 # Development and local configuration files
+*.env
 *.local
 *.log
-*.pid
-*.lock
 
 # Build and distribution artifacts
 build/
 dist/
 *.egg-info/
 .eggs/
-*.manifest
-*.spec
+*.egg
+*.whl
 
-# Project-specific files
-Dockerfile
-README.md
-requirements.txt
-```
+# Other unnecessary files
+*.bak
+*.swp
+.DS_Store
+Thumbs.db
