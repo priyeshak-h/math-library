@@ -1,24 +1,22 @@
-FROM python:3.12.8
+FROM python:3.12.8-slim
 
 # Set the working directory
 WORKDIR /app
 
-# Copy requirements and application files
+# Copy requirements file
 COPY requirements.txt .
-COPY . .
 
 # Install system dependencies
 RUN apt-get update && apt-get install -y \
-    build-essential \
-    libssl-dev \
-    libffi-dev \
-    python3-dev
+    libxml2-dev \
+    libxslt1-dev \
+    && rm -rf /var/lib/apt/lists/*
 
-# Install dependencies from requirements file
+# Install Python dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Expose port if necessary (example: 5000)
-EXPOSE 5000
+# Copy application files
+COPY . .
 
-# Define startup command
+# Set the startup command
 CMD ["python", "main.py"]
