@@ -1,36 +1,35 @@
 ```
-# Version control directories and files
+# Exclude version control directories and files
 .git
-.hg
-.svn
-*.swp
+.gitignore
 
-# Python-specific cache and compiled files
+# Remove Python-specific cache and compiled files
 __pycache__/
-*.py[cod]
-*$py.class
+*.pyc
+*.pyo
+*.pyd
 
-# Virtual environments
+# Exclude virtual environments
 venv/
 env/
-.venv/
-.env/
+*.env
 
-# Development and local configuration files
+# Ignore development and local configuration files
+*.env
+*.local
 *.log
 *.ini
 *.cfg
-*.env
 
-# Build and distribution artifacts
-*.egg
-*.egg-info/
-dist/
+# Remove unnecessary build and distribution artifacts
 build/
-*.o
-*.so
+dist/
+*.egg-info/
+*.wheel
+*.egg
+*.manifest
 
-# Project-specific files
+# Consider project-specific files that should not be in the Docker context
 .DS_Store
-*.bak
+Thumbs.db
 ```
