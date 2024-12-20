@@ -1,11 +1,10 @@
-FROM python:3.12.8
+FROM python:3.12.8-alpine
 
 WORKDIR /app
 
 COPY requirements.txt .
-
-RUN apt-get update  \
-    apt-get install -y libxml2-dev libxslt1-dev  \
+RUN apk update  \
+    apk add --no-cache gcc musl-dev libffi-dev openssl-dev  \
     pip install --no-cache-dir -r requirements.txt
 
 COPY . .

@@ -1,6 +1,9 @@
-# Version control directories and files
+```
+# Version control
 .git
-.gitignore
+.hg
+.svn
+.CVS
 
 # Python cache and compiled files
 __pycache__/
@@ -10,6 +13,7 @@ __pycache__/
 # Virtual environments
 venv/
 env/
+ENV/
 .venv/
 .env/
 
@@ -17,17 +21,26 @@ env/
 *.env
 *.local
 *.log
+*.test
+*.ini
+*.cfg
+*.yaml
+*.yml
+*.toml
 
 # Build and distribution artifacts
 build/
 dist/
 *.egg-info/
 .eggs/
-*.egg
-*.whl
 
-# Other unnecessary files
-*.bak
-*.swp
+# Byte-compiled / optimized / DLL files
+*.pyd
+*.pyo
+*.so
+*.dll
+
+# Project-specific files
 .DS_Store
 Thumbs.db
+```
