@@ -6,36 +6,24 @@ true:
   pull_request:
     branches:
     - main
+env:
+  DOCKER_IMAGE: my-app:latest
 jobs:
   build-and-run:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
-    env:
-      IMAGE_NAME: my-app
-      CONTAINER_NAME: my-app-container
+    timeout-minutes: 15
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v2
-    - name: Log in to DockerHub
-      uses: docker/login-action@v2
-      with:
-        username: ${{ secrets.DOCKER_USERNAME }}
-        password: ${{ secrets.DOCKER_PASSWORD }}
     - name: Build Docker image
-      run: docker build -t ${{ env.IMAGE_NAME }} .
+      id: docker_build
+      run: docker build -t ${{ env.DOCKER_IMAGE }} .
+      timeout-minutes: 10
+      continue-on-error: false
     - name: Run Docker container
-      run: docker run -d --name ${{ env.CONTAINER_NAME }} ${{ env.IMAGE_NAME }}
-    - name: Check container status
-      run: docker ps -f name=${{ env.CONTAINER_NAME }}
-    - name: Container logs
-      if: failure()
-      run: docker logs ${{ env.CONTAINER_NAME }}
-    - name: Cleanup
-      if: always()
-      run: 'docker stop ${{ env.CONTAINER_NAME }}
-
-        docker rm ${{ env.CONTAINER_NAME }}
-
-        docker rmi ${{ env.IMAGE_NAME }}'
+      if: steps.docker_build.outputs.outcome == 'success'
+      run: docker run --rm ${{ env.DOCKER_IMAGE }}
+      timeout-minutes: 5
+      continue-on-error: false
