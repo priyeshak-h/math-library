@@ -3,18 +3,13 @@ true:
   push:
     branches:
     - main
-  pull_request:
-    branches:
-    - main
-env:
-  IMAGE_NAME: my-app
-  CONTAINER_NAME: my-app-container
+  pull_request: null
 jobs:
   build-and-run:
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
-    - name: Checkout Code
+    - name: Checkout code
       uses: actions/checkout@v3
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v2
@@ -24,12 +19,22 @@ jobs:
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
     - name: Build Docker image
-      run: docker build -t ${{ env.IMAGE_NAME }} .
+      run: 'docker build -t my-app:latest .
+
+        '
+      timeout-minutes: 10
     - name: Run Docker container
-      run: docker run -d --name ${{ env.CONTAINER_NAME }} ${{ env.IMAGE_NAME }}
+      run: 'docker run --name my-running-app -d my-app:latest
+
+        '
+      timeout-minutes: 5
     - name: Verify container is running
-      run: docker ps | grep ${{ env.CONTAINER_NAME }}
-      continue-on-error: true
-    - name: Check container logs
-      if: failure()
-      run: docker logs ${{ env.CONTAINER_NAME }}
+      run: "if [ \"$(docker inspect -f '{{.State.Running}}' my-running-app)\" != \"\
+        true\" ]; then\n  echo \"Container is not running!\"\n  exit 1\nfi\n"
+    - name: Clean up
+      if: always()
+      run: 'docker stop my-running-app
+
+        docker rm my-running-app
+
+        docker rmi my-app:latest'
