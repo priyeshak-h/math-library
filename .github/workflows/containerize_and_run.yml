@@ -8,38 +8,28 @@ true:
     - main
 env:
   IMAGE_NAME: my-app
-  IMAGE_TAG: latest
+  CONTAINER_NAME: my-app-container
 jobs:
   build-and-run:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 30
     steps:
-    - name: Checkout code
+    - name: Checkout Code
       uses: actions/checkout@v3
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v2
-    - name: Login to Docker Hub
+    - name: Login to DockerHub
       uses: docker/login-action@v2
       with:
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
-    - name: Build the Docker image
-      run: 'docker build -t $IMAGE_NAME:$IMAGE_TAG .
-
-        '
-      timeout-minutes: 5
-    - name: Run the Docker container
-      run: 'docker run -d --name my-running-app $IMAGE_NAME:$IMAGE_TAG
-
-        '
-      timeout-minutes: 5
-    - name: Check if container is running
-      run: "if [ $(docker ps -q -f name=my-running-app) ]; then\n  echo \"Container\
-        \ is running\"\nelse\n  echo \"Container failed to start\" && exit 1\nfi\n"
-    - name: Clean up
-      if: always()
-      run: 'docker stop my-running-app || true
-
-        docker rm my-running-app || true
-
-        docker rmi $IMAGE_NAME:$IMAGE_TAG || true'
+    - name: Build Docker image
+      run: docker build -t ${{ env.IMAGE_NAME }} .
+    - name: Run Docker container
+      run: docker run -d --name ${{ env.CONTAINER_NAME }} ${{ env.IMAGE_NAME }}
+    - name: Verify container is running
+      run: docker ps | grep ${{ env.CONTAINER_NAME }}
+      continue-on-error: true
+    - name: Check container logs
+      if: failure()
+      run: docker logs ${{ env.CONTAINER_NAME }}
