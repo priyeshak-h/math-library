@@ -1,0 +1,13 @@
+name: Containerize and Run Code
+true:
+- push
+jobs:
+  build-and-run:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+    - name: Build Docker image
+      run: docker build -t my-app .
+    - name: Run Docker container
+      run: docker run my-app
