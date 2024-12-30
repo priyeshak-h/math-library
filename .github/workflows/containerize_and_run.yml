@@ -1,17 +1,26 @@
 name: Containerize and Run
+
 on:
   push:
     branches:
       - main
+
 jobs:
   build-and-run:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v1
-      - name: Build Docker image
-        run: docker build -t my-application .
-      - name: Run Docker container
-        run: docker run my-application
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v1
+
+    - name: Build Docker image
+      run: docker build -t my-app .
+
+    - name: Run Docker container
+      run: docker run --name my-running-app my-app
+
+    - name: Check container execution
+      run: docker ps -a
