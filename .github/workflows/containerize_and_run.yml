@@ -6,18 +6,15 @@ on:
       - main
 
 jobs:
-  build:
+  build-and-run:
     runs-on: ubuntu-latest
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v3
+      uses: actions/checkout@v2
 
-    - name: Build Docker image
-      run: docker build -t my-app .
+    - name: Build Docker container
+      run: docker build -t my-container .
 
     - name: Run Docker container
-      run: docker run -d --name my-running-app my-app
-
-    - name: Monitor Docker container
-      run: docker ps -a
+      run: docker run my-container
