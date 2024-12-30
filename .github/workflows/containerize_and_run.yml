@@ -6,21 +6,31 @@ on:
       - master
 
 jobs:
-  build:
+  build-and-run:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v3
+    - name: Checkout code
+      uses: actions/checkout@v2
 
     - name: Set up Docker Buildx
-      uses: docker/setup-buildx-action@v2
+      uses: docker/setup-buildx-action@v1
+
+    - name: Cache Docker layers
+      uses: actions/cache@v2
+      with:
+        path: /tmp/.buildx-cache
+        key: ${{ runner.os }}-buildx-${{ github.sha }}
+        restore-keys: |
+          ${{ runner.os }}-buildx-
 
     - name: Build Docker image
-      run: docker build -t my-docker-image .
+      run: docker build -t my-app:latest .
 
     - name: Run Docker container
-      run: docker run -d --name my-container my-docker-image
+      run: docker run -d --name my-app-container my-app:latest
 
     - name: Monitor Docker container
-      run: docker ps -a --filter "name=my-container"
+      run: |
+        sleep 10
+        docker ps
