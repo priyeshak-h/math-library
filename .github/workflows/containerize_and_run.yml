@@ -3,26 +3,15 @@ name: Containerize and Run
 on:
   push:
     branches:
-      - master
+      - main
 
 jobs:
   build-and-run:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
-
-    - name: Set up Docker Buildx
-      uses: docker/setup-buildx-action@v1
-
-    - name: Cache Docker layers
-      uses: actions/cache@v2
-      with:
-        path: /tmp/.buildx-cache
-        key: ${{ runner.os }}-buildx-${{ github.sha }}
-        restore-keys: |
-          ${{ runner.os }}-buildx-
+    - name: Checkout repository
+      uses: actions/checkout@v3
 
     - name: Build Docker image
       run: docker build -t my-app:latest .
@@ -30,7 +19,5 @@ jobs:
     - name: Run Docker container
       run: docker run -d --name my-app-container my-app:latest
 
-    - name: Monitor Docker container
-      run: |
-        sleep 10
-        docker ps
+    - name: Check Docker container logs
+      run: docker logs my-app-container
