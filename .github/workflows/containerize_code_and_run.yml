@@ -1,0 +1,44 @@
+name: Containerize Code and Run
+true:
+  push:
+    branches:
+    - main
+  pull_request:
+    branches:
+    - main
+jobs:
+  build-and-run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v2
+    - name: Cache Docker layers
+      uses: actions/cache@v3
+      with:
+        path: /tmp/.buildx-cache
+        key: ${{ runner.os }}-buildx-${{ github.sha }}
+        restore-keys: '${{ runner.os }}-buildx-
+
+          '
+    - name: Log in to Docker Hub
+      uses: docker/login-action@v2
+      with:
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
+    - name: Build Docker image
+      run: docker build -t my-app:latest .
+    - name: Run Docker container
+      run: docker run --name my-app-container my-app:latest
+    - name: Monitor container execution
+      run: "if [ $(docker inspect -f '{{.State.Running}}' my-app-container) == \"\
+        false\" ]; then\n  echo \"Container has stopped running\"\n  exit 1\nfi\n"
+      continue-on-error: true
+    - name: Fetch container logs on failure
+      if: failure()
+      run: docker logs my-app-container
+    - name: Clean up
+      run: docker rm -f my-app-container
+      if: always()
