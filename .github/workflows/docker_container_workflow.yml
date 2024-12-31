@@ -1,26 +1,20 @@
 name: Docker Container Workflow
-
 on:
   push:
     branches:
       - main
-
 jobs:
-  build:
+  build-and-run:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+    - name: Checkout code
+      uses: actions/checkout@v2
 
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v1
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v1
 
-      - name: Build Docker image
-        run: docker build -t my-docker-image .
+    - name: Build Docker image
+      run: docker build -t my-docker-image .
 
-      - name: Run Docker container
-        run: docker run -d --name my-container my-docker-image
-
-      - name: Monitor Docker container
-        run: docker ps -a
+    - name: Run Docker container
+      run: docker run my-docker-image
