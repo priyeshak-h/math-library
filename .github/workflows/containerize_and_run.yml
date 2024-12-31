@@ -10,11 +10,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-    - name: Build Docker container
-      run: docker build -t my-container .
+      - name: Build Docker image
+        run: docker build -t my-app:latest .
 
-    - name: Run Docker container
-      run: docker run my-container
+      - name: Run Docker container
+        run: docker run -d --name my-app-container my-app:latest
