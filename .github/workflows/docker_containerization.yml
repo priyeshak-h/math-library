@@ -1,0 +1,28 @@
+name: Docker Containerization
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v2
+
+    - name: Build Docker image
+      run: docker build -t my-app:latest .
+
+    - name: Run Docker container
+      run: docker run -d --name my-app-container -p 80:80 my-app:latest
+
+    - name: Test application
+      run: |
+        sleep 10
+        curl -f http://localhost:80
